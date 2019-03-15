@@ -13,23 +13,24 @@ resource "random_string" "webapprnd" {
 }
 
 resource "azurerm_app_service_plan" "free" {
-    name                = "plan-free-${var.region}"
-    location            = "${var.region}"
-    resource_group_name = "${azurerm_resource_group.rg01.name}"
-    tags                = "${azurerm_resource_group.rg01.tags}"
+  name                = "plan-free-${var.region}"
+  location            = "${var.region}"
+  resource_group_name = "${azurerm_resource_group.rg01.name}"
+  tags                = "${azurerm_resource_group.rg01.tags}"
 
-    kind                = "Linux"
-    sku {
-        tier = "Free"
-        size = "F1"
-    }
+  kind = "Linux"
+
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
 }
 
 resource "azurerm_app_service" "citadel" {
-    name                = "webapp-${random_string.webapprnd.result}-${var.region}"
-    location            = "${var.region}"
-    resource_group_name = "${azurerm_resource_group.rg01.name}"
-    tags                = "${azurerm_resource_group.rg01.tags}"
+  name                = "webapp-${random_string.webapprnd.result}-${var.region}"
+  location            = "${var.region}"
+  resource_group_name = "${azurerm_resource_group.rg01.name}"
+  tags                = "${azurerm_resource_group.rg01.tags}"
 
-    app_service_plan_id = "${azurerm_app_service_plan.free.id}"
+  app_service_plan_id = "${azurerm_app_service_plan.free.id}"
 }
