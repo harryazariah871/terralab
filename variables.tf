@@ -11,5 +11,5 @@ variable "tags" {
 }
 variable "webapplocs" {
     description = "Web App allowed locations"
-    default     =   [ "eastus2", "uksouth", "northeurope" ]
+    default     =   ["westeurope"]
 }

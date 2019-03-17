@@ -1,0 +1,1 @@
+az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/a822836f-a295-4355-8b42-3f8d950e4e10"

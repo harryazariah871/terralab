@@ -13,8 +13,9 @@ resource "random_string" "webapprnd" {
 }
 
 resource "azurerm_app_service_plan" "free" {
-  name                = "plan-free-${var.region}"
-  location            = "${var.region}"
+  name                = "plan-free-${var.webapplocs[count.index]}"
+  count               = "${length(var.webapplocs)}"
+  location            = "${var.webapplocs[count.index]}"
   resource_group_name = "${azurerm_resource_group.rg01.name}"
   tags                = "${azurerm_resource_group.rg01.tags}"
 
@@ -24,13 +25,19 @@ resource "azurerm_app_service_plan" "free" {
     tier = "Free"
     size = "F1"
   }
+  
 }
 
 resource "azurerm_app_service" "citadel" {
-  name                = "webapp-${random_string.webapprnd.result}-${var.region}"
-  location            = "${var.region}"
+  name                = "webapp-${random_string.webapprnd.result}-${var.webapplocs[count.index]}"
+  count               = "${length(var.webapplocs)}"
+  location            = "${var.webapplocs[count.index]}"
   resource_group_name = "${azurerm_resource_group.rg01.name}"
   tags                = "${azurerm_resource_group.rg01.tags}"
 
-  app_service_plan_id = "${azurerm_app_service_plan.free.id}"
+  app_service_plan_id = "${element(azurerm_app_service_plan.free.*.id, count.index)}"
+}
+output "webapp_ids" {
+  description = "ids of the webapps provisoned."
+  value       = "${azurerm_app_service.citadel.*.id}"
 }
