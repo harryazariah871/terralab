@@ -1,3 +1,7 @@
+module "scaffold" {
+  source    = "../terraform-module-scaffold/scaffold"
+}
+
 resource "azurerm_resource_group" "rg01" {
   name     = "webapps"
   location = "${var.region}"
