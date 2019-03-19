@@ -1,11 +1,1 @@
-{
-    "Modules": [
-        {
-            "Source": "../terraform-module-scaffold/scaffold",
-            "Key": "1.scaffold;../terraform-module-scaffold/scaffold",
-            "Version": "",
-            "Dir": ".terraform\\modules\\0da6881dc54c94e812ce91e4b41a02d4",
-            "Root": ""
-        }
-    ]
-}
+{"Modules":[{"Source":"../terraform-module-scaffold/scaffold","Key":"1.scaffold;../terraform-module-scaffold/scaffold","Version":"","Dir":".terraform/modules/0da6881dc54c94e812ce91e4b41a02d4","Root":""}]}

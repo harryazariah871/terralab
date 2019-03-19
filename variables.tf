@@ -13,3 +13,8 @@ variable "webapplocs" {
     description = "Web App allowed locations"
     default     =   ["westeurope"]
 }
+
+variable "vnet01Name" {
+    description = "Web App allowed locations"
+    default     =   "vnet01lab"
+}
